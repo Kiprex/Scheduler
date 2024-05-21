@@ -34,26 +34,28 @@ def btn_click():
             messagebox.showinfo(title='Операция завершена', message=output_empty)
         elif subject == 'Добавить':
             prompt = simpledialog.askstring(title='Введите новый предмет', prompt='Введите новый предмет')
-            messagebox.showinfo(title='Операция завершена', message=f'Под номером {number} записан предмет {prompt}')
-            with open(f'data/{current_day}.txt', 'r', encoding='utf-8') as x:
-                day = x.read().split('|')
-                day[int(number) - 1] = prompt
-            with open(f'data/{current_day}.txt', 'w', encoding='utf-8') as x:
-                x.truncate(0) 
-                x.seek(0)
-                x.write('|'.join(day))
-            with open('data/lessons.txt', 'r', encoding='utf-8') as x:
-                les = x.read().split('|')
-                les.remove('Добавить')
-                les.append(prompt)
-                les.append('Добавить')
-                subjects['values'] = les
-            with open('data/lessons.txt', 'w', encoding='utf-8') as x:
-                x.truncate(0)
-                x.seek(0)
-                x.write('|'.join(les))
-        elif subject == '':
-            messagebox.showerror(title='Ошибка', message='Вы ничего не ввели!')
+            if prompt is None:
+                messagebox.showerror(title='Ошибка', message='Вы ничего не ввели!')
+            else:
+                messagebox.showinfo(title='Операция завершена', message=f'Под номером {number} записан предмет {prompt}')
+                with open(f'data/{current_day}.txt', 'r', encoding='utf-8') as x:
+                    day = x.read().split('|')
+                    day[int(number) - 1] = prompt
+                with open(f'data/{current_day}.txt', 'w', encoding='utf-8') as x:
+                    x.truncate(0) 
+                    x.seek(0)
+                    x.write('|'.join(day))
+                with open('data/lessons.txt', 'r', encoding='utf-8') as x:
+                    les = x.read().split('|')
+                    les.remove('Добавить')
+                    les.append(prompt)
+                    les.append('Добавить')
+                    subjects['values'] = les
+                with open('data/lessons.txt', 'w', encoding='utf-8') as x:
+                    x.truncate(0)
+                    x.seek(0)
+                    x.write('|'.join(les))
+            
         else:
             with open(f'data/{current_day}.txt', 'r', encoding='utf-8') as x:
                 day = x.read().split('|')
@@ -63,6 +65,7 @@ def btn_click():
                 x.seek(0)
                 x.write('|'.join(day))
             messagebox.showinfo(title='Операция завершена', message=f'Под номером {number} записан предмет {subject}')
+        print(subject)
             
 def clear_lessons():
     with open(f'data/lessons.txt', 'w', encoding='utf-8') as x:
