@@ -206,7 +206,7 @@ Main_window.resizable(width=False, height=False)
 
 #Переключатель дня недели
 (switcher := Frame(Main_window, bg='azure3')).pack(ipadx=10, ipady=10, expand=1, side=TOP)
-Label(switcher, text='Выберите номер урока', bg='azure3').pack(ipadx=10, ipady=10, side=TOP, anchor=CENTER)
+Label(switcher, text='Выберите день недели', bg='azure3').pack(ipadx=10, ipady=10, side=TOP, anchor=CENTER)
 (left_b := Button(switcher, text='◀', bg='darkgray', relief=FLAT, bd=8,  command=left, state='disable')).pack(side=LEFT, anchor=CENTER)
 (switch_label := Label(switcher, text=week[current_day], bg='darkgray', bd=2, width=10, relief=GROOVE)).pack(ipadx=10, ipady=10, side=LEFT, anchor=CENTER)
 (right_b := Button(switcher, text='▶', bg='darkgray', relief=GROOVE, bd=8, command=right)).pack(side=LEFT, anchor=CENTER)
